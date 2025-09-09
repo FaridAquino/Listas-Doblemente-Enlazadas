@@ -1,6 +1,5 @@
 #include <iostream>
 
-
 using  namespace std;
 
 template <typename G>
@@ -14,8 +13,13 @@ struct Nodo {
 template <typename T>
 class Lista {
 private:
-    Nodo<T>* head=nullptr;
+    Nodo<T>* sentinela=nullptr;
 public:
+    Lista() {
+        sentinela= new Nodo<T>(T{});
+        sentinela->next = sentinela;
+        sentinela->preview = sentinela;
+    }
     T front(){} //Carlos
 
     T back(){} //Carlos
@@ -32,18 +36,78 @@ public:
 
     void remove(int){} //Derek
 
-    T operator[](){} //Farid
+    T operator[](int indice) {
+        auto* p1=sentinela->next;
 
-    bool empty(){} //Farid
+        int contador=0;
+        while (contador<=indice+1 and p1!=sentinela) {
+            p1=p1->next;
+            contador++;
+        }
 
-    int size(){}  //Farid
+        if (p1==sentinela) {
+            throw out_of_range("Indice fuera de rango");
+        }
 
-    void clear(){}  //Farid
+        return p1->dato;
 
-    void reverse(){} //Farid
+    } //Farid
+
+    bool empty() {
+        if (sentinela->next==sentinela) {
+            return true;
+        }
+
+        return false;
+    } //Farid
+
+    int size() {
+        int contador=0;
+        Nodo<T>* p1=sentinela->next;
+
+        while (p1!=sentinela) {
+            p1=p1->next;
+            contador++;
+        }
+
+        return contador;
+    }  //Farid
+
+    void clear() {
+
+        Nodo<T>* head=sentinela->next;
+
+        while (head!=sentinela) {
+            Nodo<T>* temp = head;
+            head = head->next;
+            delete temp;
+        }
+
+        sentinela->next = sentinela;
+        sentinela->preview = sentinela;
+
+    }  //Farid
+
+    void reverse() {
+        Nodo<T>* actual = sentinela;
+
+        do {
+            Nodo<T>* temp = actual->next;
+            actual->next = actual->preview;
+            actual->preview = temp;
+
+            actual = temp;
+
+
+        } while (actual != sentinela);
+    } //Farid
+
+    Nodo<T>* getSentinela() {
+        return sentinela;
+    }
 };
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+
     return 0;
 }
