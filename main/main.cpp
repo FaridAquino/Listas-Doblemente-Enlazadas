@@ -15,7 +15,32 @@ template <typename T>
 class Lista {
 private:
     Nodo<T>* head=nullptr;
+public:
+    T front(){} //Carlos
 
+    T back(){} //Carlos
+
+    void push_front(){}  //Carlos
+
+    void push_baack(){}  //Carlos
+
+    T pop_front(){}  //Derek
+
+    T pop_back(){}  //Derek
+
+    void insert(T, int){} //Derek
+
+    void remove(int){} //Derek
+
+    T operator[](){} //Farid
+
+    bool empty(){} //Farid
+
+    int size(){}  //Farid
+
+    void clear(){}  //Farid
+
+    void reverse(){} //Farid
 };
 
 int main() {
