@@ -20,13 +20,40 @@ public:
         sentinela->next = sentinela;
         sentinela->preview = sentinela;
     }
-    T front(){} //Carlos
+    T front(){
+      if(sentinela->next != sentinela){
+	return sentinela->next->dato;
+      }else{
+	throw("La lista esta vacia");
+      }
+    }
 
-    T back(){} //Carlos
+    T back(){
+      if(sentinela->next != sentinela){
+       return seentinel->preview->dato;
+      }else{
+	throw("La lista esta vacia");
+      }
 
-    void push_front(){}  //Carlos
+    } 
 
-    void push_baack(){}  //Carlos
+    void push_front(T dato){
+      Nodo<T>* new_nodo = new Nodo<T>(dato);
+      
+      new_nodo->next = sentinela->next;
+      new_nodo->preview = sentinela;
+      sentinela->next->prev = new_nodo;
+      sentinela->next = new_nodo;
+
+    }  
+
+    void push_back(T dato){
+      Nodo<T>* new_nodo =new Nodo<T>(dato);
+      new_nodo->preview = sentinela->preview;
+      new_nodo->next = sentinela;
+      sentinela->preview->next = new_nodo;
+      sentinela->preview = new_nodo;
+    }  
 
     T pop_front(){}  //Derek
 
