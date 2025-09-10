@@ -30,7 +30,7 @@ public:
 
     T back(){
       if(sentinela->next != sentinela){
-       return seentinel->preview->dato;
+       return sentinela->preview->dato;
       }else{
 	throw("La lista esta vacia");
       }
@@ -78,7 +78,7 @@ public:
 
         return p1->dato;
 
-    } //Farid
+    }
 
     bool empty() {
         if (sentinela->next==sentinela) {
@@ -86,7 +86,7 @@ public:
         }
 
         return false;
-    } //Farid
+    }
 
     int size() {
         int contador=0;
@@ -98,7 +98,7 @@ public:
         }
 
         return contador;
-    }  //Farid
+    }
 
     void clear() {
 
@@ -113,7 +113,7 @@ public:
         sentinela->next = sentinela;
         sentinela->preview = sentinela;
 
-    }  //Farid
+    }
 
     void reverse() {
         Nodo<T>* actual = sentinela;
@@ -127,7 +127,7 @@ public:
 
 
         } while (actual != sentinela);
-    } //Farid
+    }
 
     Nodo<T>* getSentinela() {
         return sentinela;
