@@ -41,7 +41,7 @@ public:
       auto new_nodo = new Nodo<T>(dato);
       new_nodo->next = sentinela->next;
       new_nodo->preview = sentinela;
-      sentinela->next->prev = new_nodo;
+      sentinela->next->preview = new_nodo;
       sentinela->next = new_nodo;
 
     }  
@@ -62,8 +62,9 @@ public:
         Nodo<T>* temp = first_nodo->next;
         sentinela->next = temp;
         temp->preview = sentinela;
+        T dato_eliminado = first_nodo->dato;
         delete first_nodo;
-        return sentinela;
+        return dato_eliminado;
     }
 
     T pop_back() {
@@ -74,13 +75,14 @@ public:
         Nodo<T>* temp = lastnode->preview;
         sentinela->preview = temp;
         temp->next = sentinela;
+        T dato_eliminado = lastnode->dato;
         delete lastnode;
-        return sentinela;
+        return dato_eliminado;
     }
 
     void insert(T nuevo_dato, int index) {
         auto new_nodo = new Nodo<T>(nuevo_dato);
-        Nodo<T>* temp = sentinela;
+        Nodo<T>* temp = sentinela->next;
         for (int i = 0; i < index; i++) {
             if (temp == sentinela) {
                 cout << "Index no válido" << endl;
@@ -96,13 +98,13 @@ public:
             }
             temp = temp->next;
         }
-    } //Derek
+    }
 
     void remove(int index) {
         Nodo<T>* temp = sentinela->next;
         for (int i = 0; i <= index; i++) {
             if (temp == sentinela) {
-                cout << "Index no válido" << endl;
+                cout << "Index no valido" << endl;
                 break;
             }
             if (i == index) {
@@ -185,10 +187,33 @@ public:
     Nodo<T>* getSentinela() {
         return sentinela;
     }
+
+    void print() {
+        Nodo<T>* temp = sentinela->next;
+        while (temp!=sentinela) {
+            cout << temp->dato << " -> ";
+            temp = temp->next;
+        }
+        cout << endl;
+    }
+
 };
 
 int main() {
 
+    Lista<int> l;
+
+    l.push_front(1);
+    l.push_front(2);
+    l.push_front(3);
+    l.push_front(4);
+    l.push_front(5);
+    l.print();
+    l.insert(8,5);
+    l.print();
+
+    l.remove(3);
+    l.print();
 
 
 
